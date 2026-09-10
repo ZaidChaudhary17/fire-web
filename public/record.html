@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Emergency Fire Engine Video Generator</title>
+  <style>
+    body { margin: 0; background: #000; overflow: hidden; font-family: sans-serif; }
+    canvas { width: 1280px; height: 720px; display: block; }
+    #status { position: fixed; top: 10px; left: 10px; color: #00ff66; font-size: 16px; background: rgba(0,0,0,0.8); padding: 8px 12px; border-radius: 4px; z-index: 100; }
+  </style>
+</head>
+<body>
+  <div id="status">Preparing frames & video recorder...</div>
+  <canvas id="c" width="1280" height="720"></canvas>
+  <script>
+    const canvas = document.getElementById('c');
+    const ctx = canvas.getContext('2d');
+    const status = document.getElementById('status');
+
+    const frameSrcs = [
+      '/frames/frame-1.jpg',
+      '/frames/frame-2.jpg',
+      '/frames/frame-3.jpg',
+      '/frames/frame-4.jpg'
+    ];
+
+    let images = [];
+    let loaded = 0;
+
+    frameSrcs.forEach((src, idx) => {
+      const img = new Image();
+      img.src = src;
+      img.onload = () => {
+        loaded++;
+        images[idx] = img;
+        if (loaded === frameSrcs.length) {
+          startRecording();
+        }
+      };
+    });
+
+    function startRecording() {
+      status.innerText = "Recording 60FPS Video Animation...";
+      const stream = canvas.captureStream(60);
+      const mediaRecorder = new MediaRecorder(stream, {
+        mimeType: 'video/webm;codecs=vp9',
+        videoBitsPerSecond: 6000000
+      });
+
+      const chunks = [];
+      mediaRecorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: 'video/webm' });
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          window.recordedBase64 = reader.result;
+          status.innerText = "Video Generation Complete! (Ready to save)";
+        };
+        reader.readAsDataURL(blob);
+      };
+
+      mediaRecorder.start();
+
+      let startTime = null;
+      const totalDuration = 8000; // 8 seconds looping video
+
+      function render(timestamp) {
+        if (!startTime) startTime = timestamp;
+        const elapsed = timestamp - startTime;
+        const progress = (elapsed % totalDuration) / totalDuration;
+
+        const frameIndexFloat = progress * images.length;
+        const currentIdx = Math.floor(frameIndexFloat) % images.length;
+        const nextIdx = (currentIdx + 1) % images.length;
+        const transition = frameIndexFloat - Math.floor(frameIndexFloat);
+
+        const currentImg = images[currentIdx];
+        const nextImg = images[nextIdx];
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        if (currentImg) {
+          ctx.globalAlpha = 1;
+          ctx.drawImage(currentImg, 0, 0, canvas.width, canvas.height);
+        }
+
+        if (nextImg && transition > 0.7) {
+          const fadeAlpha = (transition - 0.7) / 0.3;
+          ctx.globalAlpha = fadeAlpha;
+          ctx.drawImage(nextImg, 0, 0, canvas.width, canvas.height);
+        }
+
+        ctx.globalAlpha = 1;
+
+        // Dynamic emergency lighting sweeps & strobes
+        const redFlash = Math.sin(elapsed / 100) > 0.2 ? 0.35 : 0.05;
+        const blueFlash = Math.cos(elapsed / 100) > 0.2 ? 0.35 : 0.05;
+
+        const redGlow = ctx.createRadialGradient(canvas.width * 0.45, canvas.height * 0.45, 20, canvas.width * 0.45, canvas.height * 0.45, 500);
+        redGlow.addColorStop(0, `rgba(239, 68, 68, ${redFlash})`);
+        redGlow.addColorStop(1, 'rgba(239, 68, 68, 0)');
+        ctx.fillStyle = redGlow;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const blueGlow = ctx.createRadialGradient(canvas.width * 0.65, canvas.height * 0.45, 20, canvas.width * 0.65, canvas.height * 0.45, 500);
+        blueGlow.addColorStop(0, `rgba(245, 158, 11, ${blueFlash})`);
+        blueGlow.addColorStop(1, 'rgba(245, 158, 11, 0)');
+        ctx.fillStyle = blueGlow;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        const topGrad = ctx.createLinearGradient(0, 0, 0, 180);
+        topGrad.addColorStop(0, 'rgba(7, 9, 12, 0.85)');
+        topGrad.addColorStop(1, 'rgba(7, 9, 12, 0)');
+        ctx.fillStyle = topGrad;
+        ctx.fillRect(0, 0, canvas.width, 180);
+
+        const btmGrad = ctx.createLinearGradient(0, canvas.height - 200, 0, canvas.height);
+        btmGrad.addColorStop(0, 'rgba(7, 9, 12, 0)');
+        btmGrad.addColorStop(1, 'rgba(7, 9, 12, 0.9)');
+        ctx.fillStyle = btmGrad;
+        ctx.fillRect(0, canvas.height - 200, canvas.width, 200);
+
+        if (elapsed < totalDuration) {
+          requestAnimationFrame(render);
+        } else {
+          mediaRecorder.stop();
+        }
+      }
+
+      requestAnimationFrame(render);
+    }
+  </script>
+</body>
+</html>

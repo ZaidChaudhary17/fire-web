@@ -1,0 +1,32 @@
+export const MBMC_CONFIG = {
+  jurisdiction: "Mira-Bhayandar Municipal Corporation (MBMC)",
+  departmentName: "Fire & Emergency Services Department",
+  eocName: "Central Emergency Operations Center (EOC-01)",
+  eocLocation: "MBMC Headquarters, Late Indira Gandhi Bhavan, Bhayandar (W), Thane - 401101",
+  emergencyHotlines: ["101", "+91-22-2811-2988", "+91-22-2811-1999", "112"],
+  radioChannels: [
+    { channel: "CH-01", name: "MBMC Fireground Primary", freq: "156.800 MHz" },
+    { channel: "CH-02", name: "Tactical Ops & Hazmat", freq: "154.570 MHz" },
+    { channel: "CH-03", name: "Water Supply & Tanker Coordination", freq: "151.625 MHz" },
+    { channel: "CH-04", name: "Disaster Management Cell", freq: "162.400 MHz" },
+  ],
+  wards: [
+    { id: "WARD-1", name: "Ward 1 - Mira Road East (Kanakia / Beverly Park)", riskLevel: "HIGH" },
+    { id: "WARD-2", name: "Ward 2 - Mira Road West (Shanti Park / Pleasant Park)", riskLevel: "MEDIUM" },
+    { id: "WARD-3", name: "Ward 3 - Bhayandar East (MIDC Industrial Zone)", riskLevel: "CRITICAL" },
+    { id: "WARD-4", name: "Ward 4 - Bhayandar West (Railway & Coastal Belt)", riskLevel: "MEDIUM" },
+    { id: "WARD-5", name: "Ward 5 - Kashimira & Western Express Hwy Corridor", riskLevel: "HIGH" },
+    { id: "WARD-6", name: "Ward 6 - Uttan, Gorai & Coastal Dongri", riskLevel: "LOW" },
+  ],
+  standardSOPs: [
+    "Confirm Call Authenticity & GPS Location",
+    "Identify Exact Structure Type & Hazmat Presence",
+    "Dispatch Closest Lead Pumper & Water Tender",
+    "Notify MBMC Ward Disaster Officer & Traffic Police",
+    "Transmit Continuous Radio Status on CH-01",
+    "Establish Incident Command Post & Safety Perimeter",
+    "Assess Occupant Trapping & Initiate Search & Rescue",
+    "Verify Water Hydrant Grid & Auxiliary Tanker Line",
+    "Confirm Gas / Electrical Mains Isolation with MSEDCL / Adani Electricity",
+  ],
+};

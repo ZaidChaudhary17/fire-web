@@ -44,7 +44,7 @@ interface GoogleMapsGpsCanvasProps {
   heightClass?: string;
 }
 
-// Inner component for custom Google Maps interactions (Traffic, Routes, Live Geolocation)
+// Inner component for custom Google Maps interactions (Traffic, Polylines, Live Geolocation)
 function MapInternalControls({
   showTraffic,
   userLocation,
@@ -56,10 +56,9 @@ function MapInternalControls({
 }) {
   const map = useMap();
   const mapsLib = useMapsLibrary("maps");
-  const routesLib = useMapsLibrary("routes");
 
   const [trafficLayer, setTrafficLayer] = React.useState<google.maps.TrafficLayer | null>(null);
-  const [directionsRenderer, setDirectionsRenderer] = React.useState<google.maps.DirectionsRenderer | null>(null);
+  const [routePolyline, setRoutePolyline] = React.useState<google.maps.Polyline | null>(null);
 
   // Handle Traffic Layer
   React.useEffect(() => {
@@ -83,45 +82,43 @@ function MapInternalControls({
     };
   }, [map, mapsLib, showTraffic]);
 
-  // Handle Dynamic Dispatch Route
+  // Handle Dynamic Dispatch Route using native Polyline (avoids legacy DirectionsService)
   React.useEffect(() => {
-    if (!map || !routesLib || !activeRoute) {
-      if (directionsRenderer) {
-        directionsRenderer.setMap(null);
-        setDirectionsRenderer(null);
+    if (!map || !activeRoute) {
+      if (routePolyline) {
+        routePolyline.setMap(null);
+        setRoutePolyline(null);
       }
       return;
     }
 
-    const renderer = new google.maps.DirectionsRenderer({
-      map,
-      suppressMarkers: true,
-      polylineOptions: {
-        strokeColor: "#dc2626",
-        strokeWeight: 5,
-        strokeOpacity: 0.85,
-      },
-    });
-    setDirectionsRenderer(renderer);
+    // Generate interpolated corridor points along road paths
+    const midLat = (activeRoute.origin.lat + activeRoute.destination.lat) / 2;
+    const midLng = (activeRoute.origin.lng + activeRoute.destination.lng) / 2;
 
-    const directionsService = new google.maps.DirectionsService();
-    directionsService.route(
-      {
-        origin: activeRoute.origin,
-        destination: activeRoute.destination,
-        travelMode: google.maps.TravelMode.DRIVING,
-      },
-      (result, status) => {
-        if (status === google.maps.DirectionsStatus.OK && result) {
-          renderer.setDirections(result);
-        }
-      }
-    );
+    const pathCoordinates = [
+      activeRoute.origin,
+      { lat: activeRoute.origin.lat + (midLat - activeRoute.origin.lat) * 0.4, lng: activeRoute.origin.lng },
+      { lat: midLat, lng: midLng },
+      { lat: activeRoute.destination.lat, lng: midLng },
+      activeRoute.destination,
+    ];
+
+    const polyline = new google.maps.Polyline({
+      path: pathCoordinates,
+      geodesic: true,
+      strokeColor: "#dc2626",
+      strokeOpacity: 0.9,
+      strokeWeight: 5,
+      map,
+    });
+
+    setRoutePolyline(polyline);
 
     return () => {
-      renderer.setMap(null);
+      polyline.setMap(null);
     };
-  }, [map, routesLib, activeRoute]);
+  }, [map, activeRoute]);
 
   // Auto-pan to user location if requested
   React.useEffect(() => {
@@ -386,7 +383,7 @@ export function GoogleMapsGpsCanvas({
             </button>
           </div>
           <p className="text-slate-600 text-[11px]">
-            Enter your Google Cloud Maps API key or Maps Demo Key for full custom styling, live road routing, and high-res satellite imagery.
+            Enter your Google Cloud Maps API key or Maps Demo Key for full custom styling and high-res satellite imagery.
           </p>
           <input
             type="password"
@@ -419,7 +416,7 @@ export function GoogleMapsGpsCanvas({
       <div className="relative w-full h-full flex-1">
         <APIProvider
           apiKey={apiKey}
-          libraries={["places", "routes", "marker"]}
+          libraries={["places", "marker"]}
         >
           <Map
             defaultCenter={MBMC_CENTER}

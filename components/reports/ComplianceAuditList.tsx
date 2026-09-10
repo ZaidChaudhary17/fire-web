@@ -6,56 +6,56 @@ import { Button } from "@/components/ui/button";
 
 export function ComplianceAuditList() {
   return (
-    <Card className="border-slate-800 bg-[#0e1217] font-mono text-xs">
-      <CardHeader className="pb-3">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded bg-emerald-950/80 border border-emerald-800 text-emerald-400">
-            <ShieldCheck className="w-4 h-4" />
+    <Card className="border-slate-200 bg-white shadow-sm text-xs">
+      <CardHeader className="pb-3 border-b border-slate-100">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-800">
+            <ShieldCheck className="w-5 h-5 text-emerald-700" />
           </div>
           <div>
-            <CardTitle className="text-sm uppercase">
-              AUDITED MUNICIPAL COMPLIANCE & SAFETY VERIFICATION REPORTS
+            <CardTitle className="text-sm font-bold text-[#0a2540] uppercase tracking-wide">
+              Audited Municipal Compliance & Safety Verification Reports
             </CardTitle>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500 font-medium">
               Form B High-Rise certificates, MIDC hazardous storage inspections, & apparatus readiness
             </p>
           </div>
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-3 p-4 pt-0">
+      <CardContent className="space-y-3 p-4">
         {MOCK_COMPLIANCE_REPORTS.map((report) => (
           <div
             key={report.id}
-            className="p-3.5 rounded-lg border border-slate-800 bg-slate-900/60 flex flex-col md:flex-row md:items-center justify-between gap-3"
+            className="p-4 rounded-xl border border-slate-200 bg-slate-50 flex flex-col md:flex-row md:items-center justify-between gap-3 hover:bg-slate-100/60 transition-colors"
           >
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               <div className="flex items-center gap-2">
-                <span className="font-bold text-white text-xs">
+                <span className="font-bold text-[#0a2540] text-xs">
                   {report.reportNumber}
                 </span>
-                <span className="text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-800 px-1.5 py-0.2 rounded font-bold">
+                <span className="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">
                   {report.status}
                 </span>
-                <span className="text-[10px] text-slate-500">
+                <span className="text-xs text-slate-500 font-medium">
                   {report.date}
                 </span>
               </div>
-              <h4 className="font-semibold text-slate-200 text-xs">
+              <h4 className="font-bold text-slate-900 text-xs">
                 {report.title}
               </h4>
-              <p className="text-[11px] text-slate-400 leading-relaxed max-w-2xl">
+              <p className="text-[11px] text-slate-600 leading-relaxed max-w-2xl">
                 {report.summary}
               </p>
-              <div className="text-[10px] text-slate-500">
-                Audited By: <span className="text-slate-300">{report.author}</span> • Jurisdiction: <span className="text-slate-300">{report.ward}</span>
+              <div className="text-[11px] text-slate-500">
+                Audited By: <span className="text-slate-900 font-semibold">{report.author}</span> • Jurisdiction: <span className="text-slate-900 font-semibold">{report.ward}</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-slate-800">
+            <div className="flex items-center gap-4 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-slate-200">
               <div className="text-right">
-                <div className="text-[10px] text-slate-500">Compliance Rate:</div>
-                <div className="text-base font-bold text-emerald-400">
+                <div className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Compliance Rate</div>
+                <div className="text-lg font-bold text-emerald-800">
                   {report.responseCompliancePct}%
                 </div>
               </div>
@@ -63,10 +63,10 @@ export function ComplianceAuditList() {
               <Button
                 variant="outline"
                 size="sm"
-                className="h-8 text-[11px] text-slate-300 border-slate-700 hover:bg-slate-800 gap-1"
+                className="h-8 text-xs font-semibold text-blue-700 border-slate-300 hover:bg-blue-50 gap-1.5"
               >
-                <Download className="w-3.5 h-3.5 text-slate-400" />
-                <span>DOSSIER</span>
+                <Download className="w-3.5 h-3.5 text-blue-700" />
+                <span>Dossier</span>
               </Button>
             </div>
           </div>

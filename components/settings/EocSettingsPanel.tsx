@@ -31,101 +31,101 @@ export function EocSettingsPanel() {
   };
 
   return (
-    <Card className="border-slate-800 bg-[#0e1217] font-mono text-xs">
-      <CardHeader className="flex flex-row items-center justify-between pb-3">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded bg-slate-800 border border-slate-700 text-slate-300">
-            <Settings className="w-4 h-4" />
+    <Card className="border-slate-200 bg-white shadow-sm text-xs">
+      <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-slate-100">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-lg bg-blue-50 border border-blue-200 text-[#0a2540]">
+            <Settings className="w-5 h-5" />
           </div>
           <div>
-            <CardTitle className="text-sm uppercase">
-              EOC CONSOLE CONFIGURATION & PARAMETERS
+            <CardTitle className="text-sm font-bold text-[#0a2540] uppercase tracking-wide">
+              EOC Console Configuration & Parameters
             </CardTitle>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500 font-medium">
               Centralized dispatch triggers, VHF radio repeaters & ward boundaries
             </p>
           </div>
         </div>
 
         {isSaved && (
-          <div className="flex items-center gap-1 text-emerald-400 bg-emerald-950 px-2.5 py-1 rounded border border-emerald-800 font-bold">
-            <CheckCircle2 className="w-3.5 h-3.5" />
-            <span>CONFIG SAVED</span>
+          <div className="flex items-center gap-1.5 text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200 font-bold">
+            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <span>Config Saved</span>
           </div>
         )}
       </CardHeader>
 
-      <CardContent>
+      <CardContent className="pt-4">
         <form onSubmit={handleSave} className="space-y-4">
           {/* Dispatch Thresholds */}
-          <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800 space-y-3">
-            <div className="text-[11px] font-bold text-slate-300 uppercase flex items-center gap-1.5">
-              <ShieldCheck className="w-3.5 h-3.5 text-red-400" />
-              <span>ALARM BENCHMARK & DISPATCH TIMING THRESHOLDS</span>
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+            <div className="text-xs font-bold text-[#0a2540] uppercase tracking-wider flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-blue-700" />
+              <span>Alarm Benchmark & Dispatch Timing Thresholds</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-slate-400 text-[10px]">MAX TURNOUT TIME TARGET (SECONDS)</label>
+                <label className="text-slate-600 font-semibold text-xs">Max Turnout Target (Seconds)</label>
                 <Input
                   value={turnoutThreshold}
                   onChange={(e) => setTurnoutThreshold(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 bg-white border-slate-300 text-slate-900 text-xs h-9"
                 />
               </div>
 
               <div>
-                <label className="text-slate-400 text-[10px]">MAX TRAVEL TIME TARGET (SECONDS)</label>
+                <label className="text-slate-600 font-semibold text-xs">Max Travel Target (Seconds)</label>
                 <Input
                   value={travelThreshold}
                   onChange={(e) => setTravelThreshold(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 bg-white border-slate-300 text-slate-900 text-xs h-9"
                 />
               </div>
             </div>
           </div>
 
           {/* VHF Radio Channels */}
-          <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800 space-y-3">
-            <div className="text-[11px] font-bold text-slate-300 uppercase flex items-center gap-1.5">
-              <Radio className="w-3.5 h-3.5 text-blue-400" />
-              <span>VHF WIRELESS REPEATER NETWORK (MBMC FIRE GROUND)</span>
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
+            <div className="text-xs font-bold text-[#0a2540] uppercase tracking-wider flex items-center gap-1.5">
+              <Radio className="w-4 h-4 text-blue-700" />
+              <span>VHF Wireless Repeater Network (MBMC Fire Ground)</span>
             </div>
 
             <div className="space-y-2">
               {MBMC_CONFIG.radioChannels.map((rc) => (
                 <div
                   key={rc.channel}
-                  className="flex items-center justify-between p-2 rounded bg-slate-950 border border-slate-800 text-[11px]"
+                  className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-slate-200 text-xs"
                 >
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-red-400">{rc.channel}</span>
-                    <span className="text-slate-200">{rc.name}</span>
+                    <span className="font-bold text-red-600">{rc.channel}</span>
+                    <span className="text-slate-800 font-medium">{rc.name}</span>
                   </div>
-                  <span className="text-cyan-400 font-bold">{rc.freq}</span>
+                  <span className="text-blue-900 font-bold">{rc.freq}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Municipal HQ Details */}
-          <div className="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800 space-y-2 text-slate-300 text-[11px]">
-            <div className="font-bold text-slate-400 uppercase flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-emerald-400" />
-              <span>EOC HEADQUARTERS DESIGNATION</span>
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-slate-700 text-xs">
+            <div className="font-bold text-[#0a2540] uppercase tracking-wider flex items-center gap-1.5">
+              <MapPin className="w-4 h-4 text-emerald-600" />
+              <span>EOC Headquarters Designation</span>
             </div>
-            <p><span className="text-slate-500">Jurisdiction:</span> {MBMC_CONFIG.jurisdiction}</p>
-            <p><span className="text-slate-500">Facility:</span> {MBMC_CONFIG.eocLocation}</p>
-            <p><span className="text-slate-500">Hotlines:</span> {MBMC_CONFIG.emergencyHotlines.join(" • ")}</p>
+            <p><span className="font-semibold text-slate-900">Jurisdiction:</span> {MBMC_CONFIG.jurisdiction}</p>
+            <p><span className="font-semibold text-slate-900">Facility:</span> {MBMC_CONFIG.eocLocation}</p>
+            <p><span className="font-semibold text-slate-900">Hotlines:</span> {MBMC_CONFIG.emergencyHotlines.join(" • ")}</p>
           </div>
 
           <div className="pt-2 flex justify-end">
             <Button
               type="submit"
-              className="bg-red-600 hover:bg-red-700 text-white font-bold gap-1.5"
+              className="bg-[#0a2540] hover:bg-slate-800 text-white font-bold gap-1.5 shadow-sm"
             >
-              <Save className="w-3.5 h-3.5" />
-              <span>UPDATE EOC CONFIGURATION</span>
+              <Save className="w-4 h-4" />
+              <span>Update EOC Configuration</span>
             </Button>
           </div>
         </form>

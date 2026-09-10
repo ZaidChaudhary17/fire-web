@@ -112,38 +112,38 @@ export function QuickDispatchModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent onClose={() => onOpenChange(false)} className="max-w-xl">
+      <DialogContent onClose={() => onOpenChange(false)} className="max-w-xl bg-white text-slate-900 border-slate-200">
         <DialogHeader>
-          <DialogTitle className="text-red-500 font-mono">
-            <Flame className="w-5 h-5 animate-pulse" />
-            <span>EMERGENCY 101 CAD DISPATCH TRANSMITTER</span>
+          <DialogTitle className="text-red-700 font-bold text-base flex items-center gap-2">
+            <Flame className="w-5 h-5 text-red-600 animate-pulse" />
+            <span>Emergency 101 CAD Dispatch Transmitter</span>
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-xs text-slate-600 font-medium">
             Instant Computer-Aided Dispatch (CAD) to all 5 MBMC Fire Station Alert Bays & Radio Channels.
           </DialogDescription>
         </DialogHeader>
 
         {successMessage ? (
-          <div className="py-12 flex flex-col items-center justify-center text-center space-y-3 font-mono">
-            <div className="p-3 rounded-full bg-emerald-950 border border-emerald-500 text-emerald-400 animate-pulse">
+          <div className="py-12 flex flex-col items-center justify-center text-center space-y-3">
+            <div className="p-3.5 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-700 animate-pulse">
               <ShieldCheck className="w-8 h-8" />
             </div>
-            <h3 className="text-base font-bold text-white uppercase">
-              TURNOUT ORDER BROADCAST TO STATION BAYS
+            <h3 className="text-base font-bold text-[#0a2540] uppercase">
+              Turnout Order Broadcast to Station Bays
             </h3>
-            <p className="text-xs text-slate-400">
-              Station sirens activated • VHF Frequency locked to CH-01
+            <p className="text-xs text-slate-600 font-medium">
+              Station alert sirens activated • VHF Frequency locked to CH-01
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4 font-mono text-xs">
+          <form onSubmit={handleSubmit} className="space-y-4 text-xs">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-slate-400 text-[11px]">INCIDENT TYPE</label>
+                <label className="text-slate-700 font-semibold text-xs">Incident Type</label>
                 <Select
                   value={incidentType}
                   onChange={(e) => setIncidentType(e.target.value as IncidentType)}
-                  className="mt-1"
+                  className="mt-1 bg-slate-50 border-slate-300 text-slate-900 text-xs h-9"
                 >
                   <option value="Residential Fire">Residential High-Rise Fire</option>
                   <option value="Commercial Complex Fire">Commercial Complex Fire</option>
@@ -156,50 +156,50 @@ export function QuickDispatchModal({
               </div>
 
               <div>
-                <label className="text-slate-400 text-[11px]">ALARM SEVERITY</label>
+                <label className="text-slate-700 font-semibold text-xs">Alarm Severity</label>
                 <Select
                   value={severity}
                   onChange={(e) => setSeverity(e.target.value as IncidentSeverity)}
-                  className="mt-1 text-red-400 font-bold"
+                  className="mt-1 bg-slate-50 border-slate-300 text-red-700 font-bold text-xs h-9"
                 >
-                  <option value="CRITICAL">1ST ALARM - CRITICAL (T1)</option>
-                  <option value="HIGH">2ND ALARM - HIGH (T2)</option>
-                  <option value="MEDIUM">3RD ALARM - MEDIUM (T3)</option>
-                  <option value="LOW">MINOR - LOW (T4)</option>
+                  <option value="CRITICAL">1st Alarm - Critical (T1)</option>
+                  <option value="HIGH">2nd Alarm - High (T2)</option>
+                  <option value="MEDIUM">3rd Alarm - Medium (T3)</option>
+                  <option value="LOW">Minor - Low (T4)</option>
                 </Select>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-slate-400 text-[11px]">LOCATION / BUILDING / SECTOR</label>
+                <label className="text-slate-700 font-semibold text-xs">Location / Building / Sector</label>
                 <Input
                   required
                   placeholder="e.g. Shanti Nagar, Sector 4, Mira Rd"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 bg-slate-50 border-slate-300 text-slate-900 text-xs h-9 placeholder:text-slate-400 focus:bg-white"
                 />
               </div>
 
               <div>
-                <label className="text-slate-400 text-[11px]">LANDMARK</label>
+                <label className="text-slate-700 font-semibold text-xs">Landmark</label>
                 <Input
                   placeholder="e.g. Near GCC Club or Station Flyover"
                   value={landmark}
                   onChange={(e) => setLandmark(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 bg-slate-50 border-slate-300 text-slate-900 text-xs h-9 placeholder:text-slate-400 focus:bg-white"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-slate-400 text-[11px]">MUNICIPAL WARD</label>
+                <label className="text-slate-700 font-semibold text-xs">Municipal Ward</label>
                 <Select
                   value={ward}
                   onChange={(e) => setWard(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 bg-slate-50 border-slate-300 text-slate-900 text-xs h-9"
                 >
                   {MBMC_CONFIG.wards.map((w) => (
                     <option key={w.id} value={w.name}>
@@ -210,11 +210,11 @@ export function QuickDispatchModal({
               </div>
 
               <div>
-                <label className="text-slate-400 text-[11px]">PRIMARY LEAD STATION</label>
+                <label className="text-slate-700 font-semibold text-xs">Primary Lead Station</label>
                 <Select
                   value={leadStationId}
                   onChange={(e) => setLeadStationId(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 bg-slate-50 border-slate-300 text-slate-900 text-xs h-9"
                 >
                   {MOCK_STATIONS.map((st) => (
                     <option key={st.id} value={st.id}>
@@ -227,39 +227,39 @@ export function QuickDispatchModal({
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-slate-400 text-[11px]">CALLER NAME</label>
+                <label className="text-slate-700 font-semibold text-xs">Caller Name</label>
                 <Input
                   placeholder="Citizen Name / Security Desk"
                   value={callerName}
                   onChange={(e) => setCallerName(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 bg-slate-50 border-slate-300 text-slate-900 text-xs h-9 placeholder:text-slate-400 focus:bg-white"
                 />
               </div>
 
               <div>
-                <label className="text-slate-400 text-[11px]">CALLER PHONE</label>
+                <label className="text-slate-700 font-semibold text-xs">Caller Phone</label>
                 <Input
                   placeholder="+91 98..."
                   value={callerPhone}
                   onChange={(e) => setCallerPhone(e.target.value)}
-                  className="mt-1"
+                  className="mt-1 bg-slate-50 border-slate-300 text-slate-900 text-xs h-9 placeholder:text-slate-400 focus:bg-white"
                 />
               </div>
             </div>
 
             <div>
-              <label className="text-slate-400 text-[11px]">OPERATOR CAD NOTES</label>
+              <label className="text-slate-700 font-semibold text-xs">Operator CAD Notes</label>
               <Input
                 placeholder="Initial size-up details, trapped occupants, chemical smoke, power isolation status"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                className="mt-1"
+                className="mt-1 bg-slate-50 border-slate-300 text-slate-900 text-xs h-9 placeholder:text-slate-400 focus:bg-white"
               />
             </div>
 
-            <div className="pt-3 border-t border-slate-800 flex items-center justify-between">
-              <div className="flex items-center gap-2 text-[11px] text-amber-400">
-                <AlertTriangle className="w-3.5 h-3.5" />
+            <div className="pt-3 border-t border-slate-200 flex items-center justify-between">
+              <div className="flex items-center gap-1.5 text-xs text-amber-700 font-semibold">
+                <AlertTriangle className="w-4 h-4 text-amber-600" />
                 <span>Transmits immediately to active station klaxons</span>
               </div>
 
@@ -268,16 +268,17 @@ export function QuickDispatchModal({
                   type="button"
                   variant="outline"
                   onClick={() => onOpenChange(false)}
+                  className="border-slate-300 text-slate-700 hover:bg-slate-100"
                 >
-                  CANCEL
+                  Cancel
                 </Button>
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="gap-2 bg-red-600 hover:bg-red-700 font-bold"
+                  className="gap-2 bg-red-600 hover:bg-red-700 text-white font-bold shadow-sm"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>{isSubmitting ? "TRANSMITTING..." : "BROADCAST TURNOUT"}</span>
+                  <span>{isSubmitting ? "Transmitting..." : "Broadcast Turnout"}</span>
                 </Button>
               </div>
             </div>

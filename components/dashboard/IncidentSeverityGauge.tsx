@@ -13,65 +13,65 @@ export function IncidentSeverityGauge({ incidents }: { incidents: Incident[] }) 
   const resolvedCount = incidents.filter((i) => i.status === "RESOLVED").length;
 
   return (
-    <Card className="border-slate-800 bg-[#0e1217]">
-      <CardHeader className="pb-3">
+    <Card className="border-slate-200 bg-white shadow-sm">
+      <CardHeader className="pb-3 border-b border-slate-100 mb-2">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded bg-red-950/80 border border-red-800 text-red-400">
+          <div className="p-1.5 rounded-lg bg-red-50 border border-red-200 text-red-600">
             <ShieldAlert className="w-4 h-4" />
           </div>
-          <CardTitle className="text-sm font-mono uppercase">
-            ACTIVE TRIAGE SEVERITY DISTRIBUTION
+          <CardTitle className="text-sm font-bold text-[#0a2540] uppercase tracking-wide">
+            Active Triage Severity Distribution
           </CardTitle>
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-3 font-mono text-xs">
+      <CardContent className="space-y-3 text-xs">
         {/* Tier 1 Critical */}
-        <div className="flex items-center justify-between p-2.5 rounded bg-red-950/30 border border-red-900/60">
-          <div className="flex items-center gap-2">
-            <AlertOctagon className="w-4 h-4 text-red-400 animate-pulse" />
+        <div className="flex items-center justify-between p-3 rounded-xl bg-red-50 border border-red-200">
+          <div className="flex items-center gap-2.5">
+            <AlertOctagon className="w-5 h-5 text-red-600" />
             <div>
-              <div className="font-bold text-red-300">TIER 1 • CRITICAL (1ST ALARM)</div>
-              <div className="text-[10px] text-red-400/80">Immediate Life Safety & High-Rise Multi-Apparatus</div>
+              <div className="font-bold text-red-950">Tier 1 • Critical (1st Alarm)</div>
+              <div className="text-[11px] text-red-700">Immediate Life Safety & High-Rise Multi-Apparatus</div>
             </div>
           </div>
-          <div className="text-xl font-bold text-red-400">{criticalCount}</div>
+          <div className="text-xl font-bold text-red-700">{criticalCount}</div>
         </div>
 
         {/* Tier 2 High */}
-        <div className="flex items-center justify-between p-2.5 rounded bg-orange-950/30 border border-orange-900/60">
-          <div className="flex items-center gap-2">
-            <Flame className="w-4 h-4 text-orange-400" />
+        <div className="flex items-center justify-between p-3 rounded-xl bg-amber-50 border border-amber-200">
+          <div className="flex items-center gap-2.5">
+            <Flame className="w-5 h-5 text-amber-600" />
             <div>
-              <div className="font-bold text-orange-300">TIER 2 • HIGH (2ND ALARM)</div>
-              <div className="text-[10px] text-orange-400/80">Commercial / Structural Escalation</div>
+              <div className="font-bold text-amber-950">Tier 2 • High (2nd Alarm)</div>
+              <div className="text-[11px] text-amber-700">Commercial / Structural Escalation</div>
             </div>
           </div>
-          <div className="text-xl font-bold text-orange-400">{highCount}</div>
+          <div className="text-xl font-bold text-amber-700">{highCount}</div>
         </div>
 
         {/* Tier 3 Medium */}
-        <div className="flex items-center justify-between p-2.5 rounded bg-amber-950/30 border border-amber-900/60">
-          <div className="flex items-center gap-2">
-            <AlertTriangle className="w-4 h-4 text-amber-400" />
+        <div className="flex items-center justify-between p-3 rounded-xl bg-blue-50 border border-blue-200">
+          <div className="flex items-center gap-2.5">
+            <AlertTriangle className="w-5 h-5 text-blue-600" />
             <div>
-              <div className="font-bold text-amber-300">TIER 3 • MEDIUM (3RD ALARM)</div>
-              <div className="text-[10px] text-amber-400/80">Electrical / Controlled Fireground</div>
+              <div className="font-bold text-blue-950">Tier 3 • Medium (3rd Alarm)</div>
+              <div className="text-[11px] text-blue-700">Electrical / Controlled Fireground</div>
             </div>
           </div>
-          <div className="text-xl font-bold text-amber-400">{mediumCount}</div>
+          <div className="text-xl font-bold text-blue-700">{mediumCount}</div>
         </div>
 
         {/* 24h Resolved */}
-        <div className="flex items-center justify-between p-2.5 rounded bg-emerald-950/20 border border-emerald-900/40">
-          <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+        <div className="flex items-center justify-between p-3 rounded-xl bg-emerald-50 border border-emerald-200">
+          <div className="flex items-center gap-2.5">
+            <CheckCircle2 className="w-5 h-5 text-emerald-600" />
             <div>
-              <div className="font-bold text-emerald-300">RESOLVED IN PAST 24 HOURS</div>
-              <div className="text-[10px] text-emerald-400/80">All personnel & units demobilized</div>
+              <div className="font-bold text-emerald-950">Resolved in Past 24 Hours</div>
+              <div className="text-[11px] text-emerald-700">All personnel & units demobilized</div>
             </div>
           </div>
-          <div className="text-xl font-bold text-emerald-400">{resolvedCount}</div>
+          <div className="text-xl font-bold text-emerald-700">{resolvedCount}</div>
         </div>
       </CardContent>
     </Card>

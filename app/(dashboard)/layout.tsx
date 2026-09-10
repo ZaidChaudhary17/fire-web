@@ -23,7 +23,7 @@ export default function DashboardLayout({
   );
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-[#080b0f] text-slate-100 font-sans">
+    <div className="flex h-screen w-screen overflow-hidden bg-slate-100 text-slate-900 font-sans">
       {/* Left Sidebar */}
       <Sidebar />
 
@@ -36,7 +36,7 @@ export default function DashboardLayout({
         <BroadcastBanner criticalIncidents={criticalIncidents} />
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-[#090a0d] eoc-tactical-grid">
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-slate-50">
           {children}
         </main>
       </div>

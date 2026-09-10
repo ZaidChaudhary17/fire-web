@@ -23,51 +23,51 @@ export default function VehiclesPage() {
   const maintCount = vehicles.filter((v) => v.status === "IN_MAINTENANCE").length;
 
   return (
-    <div className="space-y-4 font-mono">
+    <div className="space-y-4">
       {/* Fleet Summary Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="p-3.5 rounded-lg bg-[#0e1217] border border-slate-800">
-          <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-            <Truck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>AVAILABLE AT STATIONS</span>
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 uppercase tracking-wider">
+            <Truck className="w-4 h-4 text-emerald-700" />
+            <span>Available At Stations</span>
           </div>
-          <div className="text-xl font-bold text-emerald-400 mt-1">
+          <div className="text-2xl font-bold text-emerald-800 mt-1">
             {availableCount} Engines
           </div>
-          <p className="text-[10px] text-slate-500">Ready for instant dispatch</p>
+          <p className="text-[11px] text-slate-500 mt-0.5">Ready for instant dispatch</p>
         </div>
 
-        <div className="p-3.5 rounded-lg bg-[#0e1217] border border-slate-800">
-          <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-            <Gauge className="w-3.5 h-3.5 text-amber-400" />
-            <span>ON SCENE PUMPING</span>
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 uppercase tracking-wider">
+            <Gauge className="w-4 h-4 text-amber-600" />
+            <span>On Scene Pumping</span>
           </div>
-          <div className="text-xl font-bold text-amber-400 mt-1">
+          <div className="text-2xl font-bold text-amber-900 mt-1">
             {pumpingCount} Engines
           </div>
-          <p className="text-[10px] text-slate-500">Active fireground operations</p>
+          <p className="text-[11px] text-slate-500 mt-0.5">Active fireground operations</p>
         </div>
 
-        <div className="p-3.5 rounded-lg bg-[#0e1217] border border-slate-800">
-          <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-            <Truck className="w-3.5 h-3.5 text-orange-400" />
-            <span>EN ROUTE WITH SIRENS</span>
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 uppercase tracking-wider">
+            <Truck className="w-4 h-4 text-orange-600" />
+            <span>En Route (Sirens On)</span>
           </div>
-          <div className="text-xl font-bold text-orange-400 mt-1">
+          <div className="text-2xl font-bold text-orange-900 mt-1">
             {enRouteCount} Units
           </div>
-          <p className="text-[10px] text-slate-500">Responding to emergency call</p>
+          <p className="text-[11px] text-slate-500 mt-0.5">Responding to emergency call</p>
         </div>
 
-        <div className="p-3.5 rounded-lg bg-[#0e1217] border border-slate-800">
-          <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-            <Wrench className="w-3.5 h-3.5 text-slate-400" />
-            <span>IN WORKSHOP / SERVICE</span>
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 uppercase tracking-wider">
+            <Wrench className="w-4 h-4 text-slate-600" />
+            <span>In Workshop / Service</span>
           </div>
-          <div className="text-xl font-bold text-slate-300 mt-1">
+          <div className="text-2xl font-bold text-slate-800 mt-1">
             {maintCount} Unit
           </div>
-          <p className="text-[10px] text-slate-500">Scheduled pump calibration</p>
+          <p className="text-[11px] text-slate-500 mt-0.5">Scheduled pump calibration</p>
         </div>
       </div>
 

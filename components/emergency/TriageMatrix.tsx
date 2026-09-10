@@ -4,72 +4,72 @@ import { ShieldAlert, AlertOctagon, Flame, AlertTriangle, Info } from "lucide-re
 
 export function TriageMatrix() {
   return (
-    <Card className="border-slate-800 bg-[#0e1217] font-mono text-xs">
-      <CardHeader className="pb-3">
+    <Card className="border-slate-200 bg-white shadow-sm text-xs">
+      <CardHeader className="pb-3 border-b border-slate-100 mb-2">
         <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded bg-red-950/80 border border-red-800 text-red-400">
+          <div className="p-1.5 rounded-lg bg-blue-50 border border-blue-200 text-[#0a2540]">
             <ShieldAlert className="w-4 h-4" />
           </div>
-          <CardTitle className="text-sm uppercase">
-            MUNICIPAL CAD EMERGENCY TRIAGE PROTOCOL (MBMC-ICS-STD)
+          <CardTitle className="text-sm font-bold text-[#0a2540] uppercase tracking-wide">
+            Municipal CAD Emergency Triage Protocol (MBMC-ICS-STD)
           </CardTitle>
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-3 pt-2">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {/* Tier 1 */}
-          <div className="bg-red-950/20 border border-red-900/60 p-3 rounded-lg space-y-1.5">
-            <div className="flex items-center gap-1.5 text-red-400 font-bold text-[11px]">
+          <div className="bg-red-50/60 border border-red-200 p-3.5 rounded-xl space-y-2">
+            <div className="flex items-center gap-1.5 text-red-700 font-bold text-xs">
               <AlertOctagon className="w-4 h-4" />
-              <span>TIER 1 • CRITICAL (1ST ALARM)</span>
+              <span>Tier 1 • Critical (1st Alarm)</span>
             </div>
-            <p className="text-[11px] text-slate-300">
+            <p className="text-[11px] text-slate-700 leading-relaxed">
               High-Rise (Above 7th floor), Chemical Hazmat, Confined Space Trapping, Hospital/School structure.
             </p>
-            <div className="text-[10px] text-red-300 font-semibold pt-1 border-t border-red-900/40">
+            <div className="text-[11px] text-red-900 font-semibold pt-2 border-t border-red-200">
               Dispatch: 1 Heavy Pumper + 1 Bronto 55m Ladder + 1 ALS Medic (Turnout &lt; 60s)
             </div>
           </div>
 
           {/* Tier 2 */}
-          <div className="bg-orange-950/20 border border-orange-900/60 p-3 rounded-lg space-y-1.5">
-            <div className="flex items-center gap-1.5 text-orange-400 font-bold text-[11px]">
+          <div className="bg-amber-50/60 border border-amber-200 p-3.5 rounded-xl space-y-2">
+            <div className="flex items-center gap-1.5 text-amber-700 font-bold text-xs">
               <Flame className="w-4 h-4" />
-              <span>TIER 2 • HIGH (2ND ALARM)</span>
+              <span>Tier 2 • High (2nd Alarm)</span>
             </div>
-            <p className="text-[11px] text-slate-300">
+            <p className="text-[11px] text-slate-700 leading-relaxed">
               Commercial Plaza, Industrial Warehouse, Large Fuel Spill on Highway, Multiple Structures.
             </p>
-            <div className="text-[10px] text-orange-300 font-semibold pt-1 border-t border-orange-900/40">
+            <div className="text-[11px] text-amber-900 font-semibold pt-2 border-t border-amber-200">
               Dispatch: 1 Multi-Purpose Pumper + 1 QRV (Turnout &lt; 90s)
             </div>
           </div>
 
           {/* Tier 3 */}
-          <div className="bg-amber-950/20 border border-amber-900/60 p-3 rounded-lg space-y-1.5">
-            <div className="flex items-center gap-1.5 text-amber-400 font-bold text-[11px]">
+          <div className="bg-blue-50/60 border border-blue-200 p-3.5 rounded-xl space-y-2">
+            <div className="flex items-center gap-1.5 text-blue-700 font-bold text-xs">
               <AlertTriangle className="w-4 h-4" />
-              <span>TIER 3 • MEDIUM (3RD ALARM)</span>
+              <span>Tier 3 • Medium (3rd Alarm)</span>
             </div>
-            <p className="text-[11px] text-slate-300">
+            <p className="text-[11px] text-slate-700 leading-relaxed">
               Residential Ground Floor, Electrical Transformer Box, Solitary Vehicle Fire.
             </p>
-            <div className="text-[10px] text-amber-300 font-semibold pt-1 border-t border-amber-900/40">
+            <div className="text-[11px] text-blue-900 font-semibold pt-2 border-t border-blue-200">
               Dispatch: 1 Quick Response Vehicle (Turnout &lt; 120s)
             </div>
           </div>
 
           {/* Tier 4 */}
-          <div className="bg-blue-950/20 border border-blue-900/60 p-3 rounded-lg space-y-1.5">
-            <div className="flex items-center gap-1.5 text-blue-400 font-bold text-[11px]">
+          <div className="bg-slate-50 border border-slate-200 p-3.5 rounded-xl space-y-2">
+            <div className="flex items-center gap-1.5 text-slate-700 font-bold text-xs">
               <Info className="w-4 h-4" />
-              <span>TIER 4 • LOW / ADVISORY</span>
+              <span>Tier 4 • Low / Advisory</span>
             </div>
-            <p className="text-[11px] text-slate-300">
+            <p className="text-[11px] text-slate-700 leading-relaxed">
               Open Plot Bush Fire, Lift Malfunction without Smoke, Tree Fall Obstruction, Water Salvage.
             </p>
-            <div className="text-[10px] text-blue-300 font-semibold pt-1 border-t border-blue-900/40">
+            <div className="text-[11px] text-slate-900 font-semibold pt-2 border-t border-slate-200">
               Dispatch: 1 Rescue Tender / Utility Crew (Turnout &lt; 180s)
             </div>
           </div>

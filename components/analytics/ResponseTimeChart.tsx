@@ -10,10 +10,10 @@ import {
   CartesianGrid, 
   Tooltip, 
   Legend, 
-  ResponsiveContainer,
-  ReferenceLine,
-  Line,
-  ComposedChart
+  ResponsiveContainer, 
+  ReferenceLine, 
+  Line, 
+  ComposedChart 
 } from "recharts";
 import { MOCK_RESPONSE_METRICS } from "@/lib/mock-data";
 import { Clock, ShieldCheck, Zap } from "lucide-react";
@@ -28,51 +28,51 @@ export function ResponseTimeChart() {
   }));
 
   return (
-    <Card className="border-slate-800 bg-[#0e1217] font-mono">
-      <CardHeader className="flex flex-row items-center justify-between pb-3">
-        <div className="flex items-center gap-2">
-          <div className="p-1.5 rounded bg-blue-950/80 border border-blue-800 text-blue-400">
-            <Clock className="w-4 h-4" />
+    <Card className="border-slate-200 bg-white shadow-sm">
+      <CardHeader className="flex flex-row items-center justify-between pb-3 border-b border-slate-100">
+        <div className="flex items-center gap-2.5">
+          <div className="p-2 rounded-lg bg-blue-50 border border-blue-200 text-[#0a2540]">
+            <Clock className="w-5 h-5" />
           </div>
           <div>
-            <CardTitle className="text-sm uppercase">
-              CAD RESPONSE TIME BENCHMARK (TURNOUT + TRAVEL)
+            <CardTitle className="text-sm font-bold text-[#0a2540] uppercase tracking-wide">
+              CAD Response Time Benchmark (Turnout + Travel)
             </CardTitle>
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500 font-medium">
               Target Standard: Under 7.0 minutes (NFPA 1710 / MBMC Guideline)
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-emerald-400 font-bold bg-emerald-950/80 border border-emerald-800 px-2 py-0.5 rounded">
-            AVG: 5.8 MIN (COMPLIANT)
+          <span className="text-emerald-800 font-bold bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full">
+            Avg: 5.8 Min (Compliant)
           </span>
         </div>
       </CardHeader>
 
-      <CardContent className="p-4 pt-0">
+      <CardContent className="p-4 pt-2">
         <div className="h-72 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <ComposedChart
               data={data}
               margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" stroke="#1f2937" />
-              <XAxis dataKey="timeSlot" stroke="#9ca3af" fontSize={11} />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <XAxis dataKey="timeSlot" stroke="#64748b" fontSize={11} />
               <YAxis
-                stroke="#9ca3af"
+                stroke="#64748b"
                 fontSize={11}
                 unit="m"
                 domain={[0, 9]}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#090d12",
-                  borderColor: "#374151",
-                  borderRadius: "6px",
-                  fontSize: "11px",
-                  fontFamily: "monospace",
+                  backgroundColor: "#ffffff",
+                  borderColor: "#cbd5e1",
+                  borderRadius: "8px",
+                  fontSize: "12px",
+                  boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
                 }}
               />
               <Legend
@@ -80,21 +80,21 @@ export function ResponseTimeChart() {
               />
               <ReferenceLine
                 y={7.0}
-                label={{ value: "7.0m Mandate", fill: "#ef4444", fontSize: 10, position: "top" }}
-                stroke="#ef4444"
+                label={{ value: "7.0m Mandate", fill: "#dc2626", fontSize: 11, position: "top" }}
+                stroke="#dc2626"
                 strokeDasharray="4 4"
               />
               <Bar
                 dataKey="totalMinutes"
                 name="Total Response Time (min)"
-                fill="#3b82f6"
+                fill="#2563eb"
                 radius={[4, 4, 0, 0]}
               />
               <Line
                 type="monotone"
                 dataKey="benchmarkGoalMinutes"
                 name="Benchmark Ceiling (7.0m)"
-                stroke="#ef4444"
+                stroke="#dc2626"
                 strokeWidth={2}
                 dot={false}
               />

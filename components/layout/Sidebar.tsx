@@ -28,23 +28,23 @@ export function Sidebar() {
   return (
     <aside
       className={cn(
-        "relative flex flex-col border-r border-slate-800 bg-[#0a0d12] transition-all duration-300 z-40 shrink-0 select-none",
+        "relative flex flex-col border-r border-[#132c42] bg-[#0a2540] text-white transition-all duration-300 z-40 shrink-0 select-none",
         collapsed ? "w-16" : "w-64"
       )}
     >
       {/* Brand & Department Logo Header */}
-      <div className="flex h-16 items-center justify-between border-b border-slate-800 px-3.5 bg-[#080b0f]">
-        <Link href="/dashboard" className="flex items-center gap-3 overflow-hidden">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-600 text-white shadow-lg shadow-red-950/80 border border-red-500/50">
-            <Flame className="h-6 w-6 text-white" />
+      <div className="flex h-16 items-center justify-between border-b border-[#1e3a8a] px-3.5 bg-[#0a1b2a]">
+        <Link href="/" className="flex items-center gap-3 overflow-hidden">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-red-600 text-white shadow-md border border-red-400">
+            <Flame className="h-6 w-6 text-amber-300" />
           </div>
           {!collapsed && (
             <div className="flex flex-col truncate">
-              <span className="text-xs font-bold tracking-wider text-slate-100 uppercase">
-                MBMC FIRE EOC
+              <span className="text-xs font-extrabold tracking-wider text-white uppercase font-sans">
+                MBMC FIRE SERVICES
               </span>
-              <span className="text-[10px] font-mono text-red-400 font-semibold truncate">
-                MIRA-BHAYANDAR COMMAND
+              <span className="text-[10px] text-amber-300 font-semibold truncate">
+                COMMAND CENTER EOC
               </span>
             </div>
           )}
@@ -52,7 +52,7 @@ export function Sidebar() {
 
         <button
           onClick={() => setCollapsed(!collapsed)}
-          className="rounded p-1 text-slate-400 hover:bg-slate-800 hover:text-white transition"
+          className="rounded p-1 text-slate-300 hover:bg-[#1e3a8a] hover:text-white transition"
           title={collapsed ? "Expand Sidebar" : "Collapse Sidebar"}
         >
           {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
@@ -62,13 +62,13 @@ export function Sidebar() {
       {/* Nav List */}
       <div className="flex-1 overflow-y-auto px-2 py-3 space-y-1">
         {!collapsed && (
-          <div className="px-3 py-1 text-[10px] font-mono uppercase tracking-wider text-slate-500 font-bold">
-            Operational Modules
+          <div className="px-3 py-1 text-[10px] uppercase tracking-wider text-slate-400 font-bold">
+            OPERATIONAL MODULES
           </div>
         )}
 
         {MAIN_NAV_ITEMS.map((item) => {
-          const isActive = pathname.startsWith(item.href);
+          const isActive = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href));
           const Icon = item.icon;
 
           let badgeValue = 0;
@@ -80,17 +80,17 @@ export function Sidebar() {
               key={item.href}
               href={item.href}
               className={cn(
-                "group flex items-center gap-3 rounded-md px-3 py-2.5 text-xs font-medium font-mono transition-colors",
+                "group flex items-center gap-3 rounded-md px-3 py-2.5 text-xs font-semibold transition-colors",
                 isActive
-                  ? "bg-red-950/60 text-white border border-red-600/70 shadow-inner"
-                  : "text-slate-400 hover:bg-slate-800/60 hover:text-slate-200"
+                  ? "bg-[#1e3a8a] text-white border-l-4 border-amber-400 font-bold shadow-sm"
+                  : "text-slate-300 hover:bg-[#132d4a] hover:text-white"
               )}
               title={collapsed ? item.title : undefined}
             >
               <Icon
                 className={cn(
-                  "h-4 w-4 shrink-0 transition-transform group-hover:scale-110",
-                  isActive ? "text-red-400" : "text-slate-400 group-hover:text-slate-200"
+                  "h-4 w-4 shrink-0 transition-transform",
+                  isActive ? "text-amber-400" : "text-slate-300 group-hover:text-white"
                 )}
               />
 
@@ -101,10 +101,10 @@ export function Sidebar() {
                   {badgeValue > 0 && (
                     <span
                       className={cn(
-                        "ml-2 rounded px-1.5 py-0.2 text-[10px] font-bold font-mono",
+                        "ml-2 rounded px-1.5 py-0.5 text-[10px] font-bold",
                         item.badgeKey === "activeIncidents"
-                          ? "bg-red-600 text-white animate-pulse"
-                          : "bg-amber-600 text-white"
+                          ? "bg-red-600 text-white"
+                          : "bg-amber-500 text-white"
                       )}
                     >
                       {badgeValue}
@@ -119,11 +119,11 @@ export function Sidebar() {
 
       {/* Station Readiness Quick Bar */}
       {!collapsed && (
-        <div className="m-2 rounded-md border border-slate-800 bg-[#0e1217] p-3 text-xs font-mono space-y-2">
-          <div className="flex items-center justify-between text-[11px] text-slate-400">
-            <span className="flex items-center gap-1.5 font-semibold text-slate-200">
-              <Building2 className="w-3.5 h-3.5 text-blue-400" />
-              STATION STATUS
+        <div className="m-2 rounded-lg border border-[#1e3a8a] bg-[#0a1b2a] p-3 text-xs space-y-2">
+          <div className="flex items-center justify-between text-[11px] text-slate-300">
+            <span className="flex items-center gap-1.5 font-bold text-white">
+              <Building2 className="w-3.5 h-3.5 text-blue-300" />
+              STATIONS STATUS
             </span>
             <span className="text-emerald-400 font-bold">5 / 5 READY</span>
           </div>
@@ -135,8 +135,8 @@ export function Sidebar() {
                 className={cn(
                   "text-center py-1 rounded text-[9px] font-bold border",
                   idx === 0 || idx === 2
-                    ? "bg-red-950/80 border-red-700 text-red-300"
-                    : "bg-emerald-950/60 border-emerald-800 text-emerald-300"
+                    ? "bg-red-950 border-red-600 text-red-200"
+                    : "bg-emerald-950 border-emerald-600 text-emerald-200"
                 )}
                 title={`${code}: ${idx === 0 || idx === 2 ? "Active Incident Response" : "Standby Operational"}`}
               >
@@ -148,16 +148,16 @@ export function Sidebar() {
       )}
 
       {/* Operator Session Footer */}
-      <div className="border-t border-slate-800 p-3 bg-[#080b0f]">
+      <div className="border-t border-[#1e3a8a] p-3 bg-[#0a1b2a]">
         <div className="flex items-center gap-3">
-          <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded bg-slate-800 border border-slate-700 font-mono font-bold text-xs text-slate-200">
+          <div className="relative flex h-8 w-8 shrink-0 items-center justify-center rounded bg-[#1e3a8a] border border-blue-400 font-bold text-xs text-white">
             CFO
-            <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-emerald-500 ring-2 ring-[#080b0f]" />
+            <span className="absolute bottom-0 right-0 h-2 w-2 rounded-full bg-emerald-400 ring-2 ring-[#0a1b2a]" />
           </div>
 
           {!collapsed && (
-            <div className="flex flex-col truncate font-mono text-[11px]">
-              <span className="font-semibold text-slate-200 truncate">
+            <div className="flex flex-col truncate text-[11px]">
+              <span className="font-bold text-white truncate">
                 Dr. Arvind Shinde
               </span>
               <span className="text-slate-400 text-[10px] truncate">

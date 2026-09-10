@@ -6,8 +6,7 @@ import { FireStation } from "@/types/station";
 import { StationCard } from "@/components/stations/StationCard";
 import { StationDetailModal } from "@/components/stations/StationDetailModal";
 import { MapMockCanvas } from "@/components/shared/MapMockCanvas";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Building2, Droplet, Users, Truck, Gauge } from "lucide-react";
+import { Building2, Droplet, Users, Truck } from "lucide-react";
 
 export default function StationsPage() {
   const [stations] = React.useState<FireStation[]>(MOCK_STATIONS);
@@ -25,49 +24,49 @@ export default function StationsPage() {
   const totalCrew = stations.reduce((acc, s) => acc + s.personnelOnDuty, 0);
 
   return (
-    <div className="space-y-4 font-mono">
+    <div className="space-y-4">
       {/* Top Telemetry Strip */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        <div className="p-3.5 rounded-lg bg-[#0e1217] border border-slate-800">
-          <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-            <Building2 className="w-3.5 h-3.5 text-blue-400" />
-            <span>MUNICIPAL STATIONS</span>
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 uppercase tracking-wider">
+            <Building2 className="w-4 h-4 text-blue-700" />
+            <span>Municipal Stations</span>
           </div>
-          <div className="text-xl font-bold text-white mt-1">5 Operational Bays</div>
-          <p className="text-[10px] text-slate-500">100% Geographic Coverage</p>
+          <div className="text-2xl font-bold text-[#0a2540] mt-1">5 Operational Bays</div>
+          <p className="text-[11px] text-slate-500 mt-0.5">100% Geographic Coverage</p>
         </div>
 
-        <div className="p-3.5 rounded-lg bg-[#0e1217] border border-slate-800">
-          <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-            <Droplet className="w-3.5 h-3.5 text-cyan-400" />
-            <span>TOTAL WATER STORAGE</span>
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 uppercase tracking-wider">
+            <Droplet className="w-4 h-4 text-sky-600" />
+            <span>Total Water Storage</span>
           </div>
-          <div className="text-xl font-bold text-cyan-400 mt-1">
+          <div className="text-2xl font-bold text-sky-900 mt-1">
             {totalWater.toLocaleString()} Litres
           </div>
-          <p className="text-[10px] text-slate-500">Underground RCC Reservoirs</p>
+          <p className="text-[11px] text-slate-500 mt-0.5">Underground RCC Reservoirs</p>
         </div>
 
-        <div className="p-3.5 rounded-lg bg-[#0e1217] border border-slate-800">
-          <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-            <Truck className="w-3.5 h-3.5 text-orange-400" />
-            <span>APPARATUS BAY LOAD</span>
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 uppercase tracking-wider">
+            <Truck className="w-4 h-4 text-blue-700" />
+            <span>Apparatus Bay Load</span>
           </div>
-          <div className="text-xl font-bold text-orange-400 mt-1">
-            {totalBaysOccupied} / {totalBays} Bays Occupied
+          <div className="text-2xl font-bold text-[#0a2540] mt-1">
+            {totalBaysOccupied} / {totalBays} Bays
           </div>
-          <p className="text-[10px] text-slate-500">14 Active Vehicles</p>
+          <p className="text-[11px] text-slate-500 mt-0.5">14 Active Vehicles Assigned</p>
         </div>
 
-        <div className="p-3.5 rounded-lg bg-[#0e1217] border border-slate-800">
-          <div className="text-[11px] text-slate-400 flex items-center gap-1.5">
-            <Users className="w-3.5 h-3.5 text-emerald-400" />
-            <span>CREW ON ACTIVE DUTY</span>
+        <div className="p-4 rounded-xl bg-white border border-slate-200 shadow-sm">
+          <div className="text-xs text-slate-500 font-semibold flex items-center gap-1.5 uppercase tracking-wider">
+            <Users className="w-4 h-4 text-emerald-700" />
+            <span>Crew On Active Duty</span>
           </div>
-          <div className="text-xl font-bold text-emerald-400 mt-1">
+          <div className="text-2xl font-bold text-emerald-800 mt-1">
             {totalCrew} Firefighters
           </div>
-          <p className="text-[10px] text-slate-500">Shift Alpha Current</p>
+          <p className="text-[11px] text-slate-500 mt-0.5">Shift Alpha Active</p>
         </div>
       </div>
 

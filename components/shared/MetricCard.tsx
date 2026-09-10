@@ -28,59 +28,59 @@ export function MetricCard({
   className,
 }: MetricCardProps) {
   const borderAndGlowClasses = {
-    critical: "border-red-500/40 bg-red-950/10 hover:border-red-500/70 shadow-[0_0_12px_rgba(239,68,68,0.15)]",
-    warning: "border-amber-500/40 bg-amber-950/10 hover:border-amber-500/70 shadow-[0_0_12px_rgba(245,158,11,0.15)]",
-    emerald: "border-emerald-500/40 bg-emerald-950/10 hover:border-emerald-500/70 shadow-[0_0_12px_rgba(16,185,129,0.15)]",
-    blue: "border-blue-500/40 bg-blue-950/10 hover:border-blue-500/70 shadow-[0_0_12px_rgba(59,130,246,0.15)]",
-    default: "border-slate-800 bg-[#0e1217] hover:border-slate-700",
+    critical: "border-red-200 bg-red-50/40 hover:border-red-300 shadow-sm",
+    warning: "border-amber-200 bg-amber-50/40 hover:border-amber-300 shadow-sm",
+    emerald: "border-emerald-200 bg-emerald-50/40 hover:border-emerald-300 shadow-sm",
+    blue: "border-blue-200 bg-blue-50/40 hover:border-blue-300 shadow-sm",
+    default: "border-slate-200 bg-white hover:border-slate-300 shadow-sm",
   }[variant];
 
   const iconColor = {
-    critical: "text-red-400 bg-red-950/80 border-red-800/80",
-    warning: "text-amber-400 bg-amber-950/80 border-amber-800/80",
-    emerald: "text-emerald-400 bg-emerald-950/80 border-emerald-800/80",
-    blue: "text-blue-400 bg-blue-950/80 border-blue-800/80",
-    default: "text-slate-300 bg-slate-800/80 border-slate-700",
+    critical: "text-red-700 bg-red-100 border-red-200",
+    warning: "text-amber-700 bg-amber-100 border-amber-200",
+    emerald: "text-emerald-700 bg-emerald-100 border-emerald-200",
+    blue: "text-blue-700 bg-blue-100 border-blue-200",
+    default: "text-[#0a2540] bg-slate-100 border-slate-200",
   }[variant];
 
   return (
     <div
       className={cn(
-        "relative rounded-lg border p-4 transition-all duration-200 overflow-hidden group",
+        "relative rounded-xl border p-4 transition-all duration-200 overflow-hidden group bg-white",
         borderAndGlowClasses,
         className
       )}
     >
       {/* Top row */}
       <div className="flex items-center justify-between">
-        <span className="text-xs font-mono font-medium uppercase tracking-wider text-slate-400">
+        <span className="text-xs font-bold uppercase tracking-wider text-slate-500 font-sans">
           {title}
         </span>
-        <div className={cn("p-1.5 rounded border", iconColor)}>
+        <div className={cn("p-1.5 rounded-lg border", iconColor)}>
           <Icon className="w-4 h-4" />
         </div>
       </div>
 
       {/* Main Metric Value */}
-      <div className="mt-3 flex items-baseline gap-1.5">
-        <span className="text-2xl font-bold font-mono tracking-tight text-slate-100">
+      <div className="mt-2.5 flex items-baseline gap-1.5">
+        <span className="text-2xl font-extrabold tracking-tight text-[#0a2540] font-sans">
           {value}
         </span>
         {unit && (
-          <span className="text-xs font-mono text-slate-400 font-medium">
+          <span className="text-xs font-bold text-slate-600">
             {unit}
           </span>
         )}
       </div>
 
       {/* Footer / Subtitle & Trend */}
-      <div className="mt-2 flex items-center justify-between text-[11px] font-mono">
-        {subtitle && <span className="text-slate-400">{subtitle}</span>}
+      <div className="mt-2 flex items-center justify-between text-xs">
+        {subtitle && <span className="text-slate-600 font-medium">{subtitle}</span>}
         {trend && (
           <span
             className={cn(
-              "font-medium",
-              trend.isPositive ? "text-emerald-400" : "text-amber-400"
+              "font-bold",
+              trend.isPositive ? "text-emerald-700" : "text-amber-700"
             )}
           >
             {trend.value} {trend.label && <span className="text-slate-500 font-normal">({trend.label})</span>}
@@ -88,15 +88,15 @@ export function MetricCard({
         )}
       </div>
 
-      {/* Subtle indicator strip */}
+      {/* Subtle bottom indicator strip */}
       <div
         className={cn(
-          "absolute bottom-0 left-0 right-0 h-[2px] opacity-70",
-          variant === "critical" && "bg-red-500",
+          "absolute bottom-0 left-0 right-0 h-[3px]",
+          variant === "critical" && "bg-red-600",
           variant === "warning" && "bg-amber-500",
-          variant === "emerald" && "bg-emerald-500",
-          variant === "blue" && "bg-blue-500",
-          variant === "default" && "bg-slate-700"
+          variant === "emerald" && "bg-emerald-600",
+          variant === "blue" && "bg-blue-600",
+          variant === "default" && "bg-[#0a2540]"
         )}
       />
     </div>

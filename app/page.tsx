@@ -1,45 +1,57 @@
 "use client";
 
 import * as React from "react";
-import { GovTopBar } from "@/components/government/GovTopBar";
-import { GovHeader } from "@/components/government/GovHeader";
-import { GovEmergencyHotlineBanner } from "@/components/government/GovEmergencyHotlineBanner";
-import { GovHero } from "@/components/government/GovHero";
-import { GovServicesSection } from "@/components/government/GovServicesSection";
-import { GovWorkflowGuide } from "@/components/government/GovWorkflowGuide";
-import { GovStationsDirectory } from "@/components/government/GovStationsDirectory";
-import { GovSafetyTips } from "@/components/government/GovSafetyTips";
-import { GovFooter } from "@/components/government/GovFooter";
+import { PortalTopUtilityBar } from "@/components/portal/PortalTopUtilityBar";
+import { PortalMainHeader } from "@/components/portal/PortalMainHeader";
+import { PortalHero } from "@/components/portal/PortalHero";
+import { PortalQuickServicesGrid } from "@/components/portal/PortalQuickServicesGrid";
+import { PortalNoticeBoard } from "@/components/portal/PortalNoticeBoard";
+import { PortalOfficialFooter } from "@/components/portal/PortalOfficialFooter";
 
 export default function RootPage() {
+  const [fontSize, setFontSize] = React.useState<"sm" | "md" | "lg">("md");
+  const [language, setLanguage] = React.useState<"en" | "mr">("en");
+
+  // Dynamic root scaling class based on accessible text size selection
+  const fontClass = 
+    fontSize === "sm" 
+      ? "text-[14px]" 
+      : fontSize === "lg" 
+      ? "text-[18px]" 
+      : "text-[16px]";
+
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col justify-between selection:bg-blue-900 selection:text-white">
-      {/* 1. Official State & Municipal Identification Bar */}
-      <GovTopBar />
+    <div className={`min-h-screen bg-slate-50 text-slate-900 font-sans flex flex-col justify-between ${fontClass}`}>
+      
+      {/* 1. Top Header & Navigation Bar */}
+      <div>
+        {/* Top Utility Bar: Skip link, Text Size (A-, A, A+), Language toggle (English / Marathi) */}
+        <PortalTopUtilityBar 
+          fontSize={fontSize} 
+          setFontSize={setFontSize} 
+          language={language} 
+          setLanguage={setLanguage} 
+        />
 
-      {/* 2. Official Municipal Department Header & Navigation */}
-      <GovHeader />
+        {/* Main Header: Clean white section with MBMC logo and standard navigation */}
+        <PortalMainHeader language={language} />
+      </div>
 
-      {/* 3. High-Contrast Emergency Telephone Hotlines Banner */}
-      <GovEmergencyHotlineBanner />
+      {/* Main Content Area (For skip to content anchor) */}
+      <main id="main-content" className="flex-1 focus:outline-none">
+        {/* 2. Hero Section: Headline, Subheadline, Daytime Photograph, Massive Red Emergency Button */}
+        <PortalHero language={language} />
 
-      {/* 4. Public Service Portal Hero Section (Clean Light Theme) */}
-      <GovHero />
+        {/* 3. Quick Citizen Services Grid: 4 White Cards with Flat-Vector Icons */}
+        <PortalQuickServicesGrid language={language} />
 
-      {/* 5. Citizen Public Services & Municipal Capabilities */}
-      <GovServicesSection />
+        {/* 4. Notice Board / Public Updates: Latest Announcements & Safety Alerts */}
+        <PortalNoticeBoard language={language} />
+      </main>
 
-      {/* 6. Step-by-Step Citizen Emergency Response Workflow */}
-      <GovWorkflowGuide />
+      {/* 5. Official Dark Navy Blue Footer */}
+      <PortalOfficialFooter language={language} />
 
-      {/* 7. Fire Stations & Coverage Network Directory */}
-      <GovStationsDirectory />
-
-      {/* 8. Citizen Fire Safety & Emergency Protocols */}
-      <GovSafetyTips />
-
-      {/* 9. Official Municipal Government Footer */}
-      <GovFooter />
     </div>
   );
 }

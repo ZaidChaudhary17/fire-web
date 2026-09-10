@@ -2,6 +2,7 @@ import { MunicipalHeroHeader } from "@/components/hero/MunicipalHeroHeader";
 import { FireResponseHero } from "@/components/hero/FireResponseHero";
 import { OperationalInfoStrip } from "@/components/hero/OperationalInfoStrip";
 import { CadFeaturesGrid } from "@/components/hero/CadFeaturesGrid";
+import { EmergencyWorkflow } from "@/components/workflow/EmergencyWorkflow";
 
 export default function RootPage() {
   return (
@@ -19,6 +20,9 @@ export default function RootPage() {
 
       {/* 4. Municipal Response Modules & Live Infrastructure Grid */}
       <CadFeaturesGrid />
+
+      {/* 5. End-to-End Emergency Response Workflow Pipeline */}
+      <EmergencyWorkflow />
     </main>
   );
 }

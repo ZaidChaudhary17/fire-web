@@ -77,14 +77,14 @@ export function HeroText({ onOpenReportModal }: HeroTextProps) {
         initial={shouldReduceMotion ? {} : { opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.9 }}
-        className="flex flex-wrap items-center gap-3 pt-2"
+        className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2 w-full max-w-md sm:max-w-none"
       >
         {/* REPORT EMERGENCY Button */}
         <motion.button
           whileHover={shouldReduceMotion ? {} : { scale: 1.02 }}
           whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
           onClick={onOpenReportModal}
-          className="group inline-flex items-center gap-2 rounded bg-red-600 px-5 py-2.5 text-xs sm:text-sm font-bold tracking-wider text-white shadow-[0_0_25px_rgba(239,68,68,0.5)] border border-red-400/60 hover:bg-red-700 active:bg-red-800 transition font-mono uppercase cursor-pointer"
+          className="group w-full sm:w-auto h-12 sm:h-11 inline-flex items-center justify-center gap-2 rounded bg-red-600 px-6 text-sm font-bold tracking-wider text-white shadow-[0_0_25px_rgba(239,68,68,0.5)] border border-red-400/60 hover:bg-red-700 active:bg-red-800 transition font-mono uppercase cursor-pointer"
         >
           <AlertOctagon className="h-4 w-4 animate-pulse group-hover:scale-110 transition-transform" />
           <span>REPORT EMERGENCY</span>
@@ -94,10 +94,11 @@ export function HeroText({ onOpenReportModal }: HeroTextProps) {
         <motion.div
           whileHover={shouldReduceMotion ? {} : { scale: 1.01 }}
           whileTap={shouldReduceMotion ? {} : { scale: 0.99 }}
+          className="w-full sm:w-auto"
         >
           <Link
             href="/dashboard"
-            className="group inline-flex items-center gap-2 rounded border border-slate-700 bg-slate-900/90 px-5 py-2.5 text-xs sm:text-sm font-bold tracking-wider text-slate-200 hover:bg-slate-800 hover:text-white hover:border-slate-500 transition font-mono uppercase shadow-md"
+            className="group w-full sm:w-auto h-12 sm:h-11 inline-flex items-center justify-center gap-2 rounded border border-slate-700 bg-slate-900/90 px-6 text-sm font-bold tracking-wider text-slate-200 hover:bg-slate-800 hover:text-white hover:border-slate-500 transition font-mono uppercase shadow-md"
           >
             <span>ENTER COMMAND CENTER</span>
             <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-white group-hover:translate-x-1 transition-transform" />

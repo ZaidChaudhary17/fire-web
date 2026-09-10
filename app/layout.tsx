@@ -17,8 +17,8 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MBMC Fire Emergency Response & Management System | Mira-Bhayandar EOC",
-  description: "Enterprise Municipal Emergency Operations Center (EOC) and Computer-Aided Dispatch (CAD) System for Mira-Bhayandar Municipal Corporation (MBMC) Fire & Emergency Services.",
+  title: "Directorate of Fire & Emergency Services | Mira-Bhayandar Municipal Corporation (MBMC)",
+  description: "Official public safety and emergency response portal of Mira-Bhayandar Municipal Corporation (MBMC) Fire & Emergency Services. Dial 101 or 112 for 24/7 fire protection, rescue operations, and building safety NOC compliance.",
 };
 
 export default function RootLayout({
@@ -27,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`dark ${sansFont.variable} ${monoFont.variable}`}>
-      <body className="min-h-screen bg-[#090a0d] text-slate-100 antialiased font-sans">
+    <html lang="en" className={`${sansFont.variable} ${monoFont.variable}`}>
+      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased font-sans">
         {children}
       </body>
     </html>
